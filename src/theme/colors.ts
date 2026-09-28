@@ -20,4 +20,9 @@ export const colors = {
     surface: "#F6F7FB",
     background: "#FFFFFF",
   },
+  bubble: {
+    blue: "#EAF3FF",
+    purple: "#F3F3FF",
+    red: "#FFF0EC",
+  },
 } as const;

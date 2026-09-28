@@ -34,6 +34,11 @@
   --color-surface: #f6f7fb;
   --color-background: #ffffff;
 
+  /* Speech bubble tints */
+  --color-bubble-blue: #eaf3ff;
+  --color-bubble-purple: #f3f3ff;
+  --color-bubble-red: #fff0ec;
+
   /* Poppins - one family per weight (React Native can't pick a weight from a single family) */
   --font-poppins-regular: Poppins-Regular;
   --font-poppins-medium: Poppins-Medium;
@@ -91,4 +96,29 @@
   font-family: Poppins-Regular;
   font-size: 11px;
   line-height: 15.4px;
+}
+
+/*
+ * Components (BEM).
+ */
+@utility primary-button {
+  @apply h-[76px] flex-row items-center justify-center rounded-[28px] bg-lingua-deep-purple;
+}
+
+@utility primary-button__chevron {
+  @apply absolute right-8 size-3 -rotate-45 border-b-[3px] border-r-[3px] border-background;
+}
+
+@utility speech-bubble {
+  @apply rounded-[22px] px-5 py-4;
+}
+
+@utility speech-bubble__text {
+  font-family: Poppins-Medium;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@utility speech-bubble__tail {
+  @apply absolute -bottom-1 size-4 rotate-45 rounded-[3px];
 }
