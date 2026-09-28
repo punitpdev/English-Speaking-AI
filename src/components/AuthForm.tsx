@@ -3,14 +3,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { type Href, useRouter } from "expo-router";
 import { type ReactNode, useState } from "react";
 import {
-    Alert,
-    Image,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  Alert,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -63,7 +63,7 @@ const socialProviders: {
     name: "Google",
     strategy: "oauth_google",
     icon: "logo-google",
-    color: "#EA4335",
+    color: "#4285F4",
   },
   // { name: "Facebook", strategy: "oauth_facebook", icon: "logo-facebook", color: "#1877F2" },
   // { name: "Apple", strategy: "oauth_apple", icon: "logo-apple", color: colors.neutral.textPrimary },
