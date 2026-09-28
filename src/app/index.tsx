@@ -1,12 +1,19 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { colors } from "@/theme";
 
 export default function Index() {
   return (
-    <View className="flex-1 justify-center items-center p-10 gap-5">
-      <Text className="text-xl text-indigo-500 text-center">
-        The Agent Development Course is coming Soon on
-      </Text>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View className="flex-1 justify-center items-center">
+        <Text className="h2 text-center color-lingua-blue">Lingua</Text>
+      </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1, backgroundColor: colors.neutral.background },
+  content: { padding: 24, gap: 32 },
+});
