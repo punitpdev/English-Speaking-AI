@@ -122,3 +122,29 @@
 @utility speech-bubble__tail {
   @apply absolute -bottom-1 size-4 rotate-45 rounded-[3px];
 }
+
+@utility auth-field {
+  @apply min-h-[72px] justify-center rounded-[18px] border border-border bg-background px-5 py-3;
+}
+
+@utility auth-field__label {
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@utility auth-button {
+  @apply h-[60px] items-center justify-center rounded-2xl bg-lingua-deep-purple;
+}
+
+@utility social-button {
+  @apply h-[54px] flex-row items-center rounded-2xl border border-border bg-background pl-9;
+}
+
+@utility otp-box {
+  @apply h-14 flex-1 items-center justify-center rounded-xl border border-border bg-surface;
+}
+
+@utility otp-box--active {
+  @apply border-lingua-deep-purple bg-background;
+}

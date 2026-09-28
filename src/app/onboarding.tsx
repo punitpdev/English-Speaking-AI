@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import {
   Image,
   Pressable,
@@ -16,6 +17,7 @@ export default function Onboarding() {
   // The mascot PNG has transparent padding, so it is drawn slightly wider than the screen.
   const { width } = useWindowDimensions();
   const mascotSize = width * 1.1;
+  const router = useRouter();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -78,7 +80,10 @@ export default function Onboarding() {
 
       {/* Get Started */}
       <View className="px-6 pb-6">
-        <Pressable className="primary-button">
+        <Pressable
+          className="primary-button"
+          onPress={() => router.push("/sign-up")}
+        >
           <Text className="font-poppins-semibold text-[20px] text-background">
             Get Started
           </Text>
