@@ -3,14 +3,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { type Href, useRouter } from "expo-router";
 import { type ReactNode, useState } from "react";
 import {
-  Alert,
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
+    Alert,
+    Image,
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -55,13 +55,18 @@ const copy: Record<
 
 const socialProviders: {
   name: string;
-  strategy: "oauth_google" | "oauth_facebook" | "oauth_apple";
+  strategy: "oauth_google";
   icon: keyof typeof Ionicons.glyphMap;
   color: string;
 }[] = [
-  { name: "Google", strategy: "oauth_google", icon: "logo-google", color: "#EA4335" },
-  { name: "Facebook", strategy: "oauth_facebook", icon: "logo-facebook", color: "#1877F2" },
-  { name: "Apple", strategy: "oauth_apple", icon: "logo-apple", color: colors.neutral.textPrimary },
+  {
+    name: "Google",
+    strategy: "oauth_google",
+    icon: "logo-google",
+    color: "#EA4335",
+  },
+  // { name: "Facebook", strategy: "oauth_facebook", icon: "logo-facebook", color: "#1877F2" },
+  // { name: "Apple", strategy: "oauth_apple", icon: "logo-apple", color: colors.neutral.textPrimary },
 ];
 
 export function AuthForm({ mode }: { mode: AuthMode }) {
@@ -88,7 +93,8 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
     }
   };
 
-  const showError = (message: string) => Alert.alert("Something went wrong", message);
+  const showError = (message: string) =>
+    Alert.alert("Something went wrong", message);
 
   // Step 1: create the account / start the sign-in, then Clerk emails a 6-digit code
   const handleSubmit = async () => {
@@ -123,7 +129,9 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
       decorateUrl: (url: string) => string;
     }) => {
       if (session?.currentTask) {
-        return showError("Extra account steps are required before you can continue.");
+        return showError(
+          "Extra account steps are required before you can continue.",
+        );
       }
       setVerifying(false);
       router.replace(decorateUrl("/") as Href);
@@ -131,14 +139,16 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
 
     if (mode === "sign-up") {
       const verified = await signUp.verifications.verifyEmailCode({ code });
-      if (verified.error) return showError(getClerkErrorMessage(verified.error));
+      if (verified.error)
+        return showError(getClerkErrorMessage(verified.error));
       if (signUp.status === "complete") {
         const done = await signUp.finalize({ navigate });
         if (done.error) showError(getClerkErrorMessage(done.error));
       }
     } else {
       const verified = await signIn.emailCode.verifyCode({ code });
-      if (verified.error) return showError(getClerkErrorMessage(verified.error));
+      if (verified.error)
+        return showError(getClerkErrorMessage(verified.error));
       if (signIn.status === "complete") {
         const done = await signIn.finalize({ navigate });
         if (done.error) showError(getClerkErrorMessage(done.error));
@@ -147,7 +157,9 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
   };
 
   // Social sign-in opens the provider in a browser, then returns with a session
-  const handleSocial = async (strategy: (typeof socialProviders)[number]["strategy"]) => {
+  const handleSocial = async (
+    strategy: (typeof socialProviders)[number]["strategy"],
+  ) => {
     try {
       const { createdSessionId, setActive } = await startSSOFlow({ strategy });
       if (createdSessionId && setActive) {
@@ -167,7 +179,7 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View className="px-6 pt-2">
+        <View className="px-6 pt-2 flex-1">
           <Pressable
             onPress={handleBack}
             hitSlop={12}
@@ -278,7 +290,11 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
                 onPress={() => handleSocial(provider.strategy)}
               >
                 <View className="w-8 items-center">
-                  <Ionicons name={provider.icon} size={26} color={provider.color} />
+                  <Ionicons
+                    name={provider.icon}
+                    size={26}
+                    color={provider.color}
+                  />
                 </View>
                 <Text className="h4 ml-7 text-text-primary">
                   Continue with {provider.name}
